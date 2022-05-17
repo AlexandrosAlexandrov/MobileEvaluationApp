@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        //add text listener on userID and check the userID restrictions
         useridText = findViewById(R.id.useridText)
         useridText.addTextChangedListener(object:TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -26,7 +28,7 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(checkUserID(useridText.text.toString()))
                 else {
-                    useridText.setError("Λάθος userID")
+                    useridText.error = "Λάθος userID"
                 }
             }
 
@@ -34,6 +36,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+
+        //add text listener on password and check password restrictions
         passwordText = findViewById(R.id.passwordText)
         passwordText.addTextChangedListener(object:TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -42,9 +46,7 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if(checkPassword(passwordText.text.toString()))
 
-                else{
-                    passwordText.setError("Λάθος κωδικός")
-                }
+                else passwordText.error = "Λάθος κωδικός"
 
             }
 
@@ -61,7 +63,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkPassword(text:String?):Boolean {
-        var p:Pattern = Pattern.compile("^"+"(?=.*[0-9])"+"(?=.*[A-Z])"+"(?=.*[a-z])"+"(?=.*[@#$%^&*+=!])"+".{8}"+"$")
+        var p:Pattern = Pattern.compile("^"
+                +"(?=.*[0-9])"+"(?=.*[0-9])" //at least 2 numbers (most likely a better way to do it but this works)
+                +"(?=.*[A-Z])"              //at least 1 uppercase letter
+                +"(?=.*[a-z])"              //at least 1 lowercase letter
+                +"(?=.*[@#$%^&*+=!])"       //at least 1 special character
+                +".{8}"                     //8 characters
+                +"$")
         var m:Matcher = p.matcher(text)
         return m.matches()
     }
