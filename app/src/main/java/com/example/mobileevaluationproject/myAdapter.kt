@@ -30,6 +30,7 @@ class myAdapter(val context: Context, val bookList: List<BooksItem>): RecyclerVi
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        bookList.sortedByDescending { it.date_released }
         holder.bookName.text = bookList[position].title
         holder.bookid.text = bookList[position].id.toString()
         holder.bookDate.text = bookList[position].date_released.take(10)

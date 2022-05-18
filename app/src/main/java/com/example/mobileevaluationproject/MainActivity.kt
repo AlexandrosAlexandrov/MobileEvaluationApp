@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,7 +23,7 @@ const val BASE_URL = "https://3nt-demo-backend.azurewebsites.net/Access/"
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var loginButton: Button
+    lateinit var loginButton: ImageButton
     lateinit var useridText: EditText
     lateinit var passwordText: EditText
     lateinit var sessionManager: SessionManager

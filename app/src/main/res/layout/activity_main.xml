@@ -59,42 +59,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/passwordText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="237dp"
-        android:layout_marginRight="37dp"
-        android:layout_marginBottom="368dp"
-        android:width="300dp"
-        android:height="62dp"
-        android:backgroundTint="#85c370"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/passwordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="237dp"
+            android:layout_marginRight="37dp"
+            android:layout_marginBottom="368dp"
+            android:width="300dp"
+            android:height="62dp"
+            android:backgroundTint="#85c370"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+
+    <ImageButton
         android:id="@+id/loginButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="94dp"
         android:layout_marginTop="571dp"
         android:layout_marginRight="93dp"
         android:layout_marginBottom="47dp"
-        android:width="188dp"
-        android:height="49dp"
-        android:background="#000000"
-        android:text="@string/login"
-        android:textColor="#85c370"
+        android:src="@drawable/btn_rounded"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55" />
+
+    <TextView
+        android:layout_marginLeft="94dp"
+        android:layout_marginTop="571dp"
+        android:layout_marginRight="93dp"
+        android:layout_marginBottom="47dp"
+        android:layout_width="67dp"
+        android:layout_height="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/login"
+        android:textColor="#85c370"
+        android:textSize="15.5sp"/>
 
     <TextView
         android:id="@+id/Password"
