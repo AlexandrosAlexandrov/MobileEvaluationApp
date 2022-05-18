@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Adapter
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uniapi.myAdapter
@@ -22,6 +23,7 @@ class BooksActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books)
+        Toast.makeText(baseContext, "Logged in ", Toast.LENGTH_SHORT).show()
 
         sessionManager = SessionManager(this)
 
@@ -48,17 +50,20 @@ class BooksActivity : AppCompatActivity() {
                 call: Call<List<BooksItem>?>,
                 response: Response<List<BooksItem>?>
             ) {
-                val responseBody = response.body()!!
+                val responseBody = response.body()
+
+                Log.d("Books Activity", "BookListSize: " +responseBody?.size)
 
                 myAdapter = myAdapter(baseContext, responseBody)
                 myAdapter.notifyDataSetChanged()
                 recyclerView.adapter = myAdapter
 
-                Log.d("Books Activity", "Count: " + myAdapter.itemCount)
             }
 
             override fun onFailure(call: Call<List<BooksItem>?>, t: Throwable) {
                 Log.d("Books Activity", "on Failure: " + t.message)
+                Toast.makeText(baseContext, "Failed to log in ", Toast.LENGTH_SHORT).show()
+                finish()
             }
         })
     }

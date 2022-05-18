@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileevaluationproject.BooksItem
 import com.example.mobileevaluationproject.R
 
-class myAdapter(val context: Context, val bookList: List<BooksItem>): RecyclerView.Adapter<myAdapter.ViewHolder>() {
+class myAdapter(val context: Context, val bookList: List<BooksItem>?): RecyclerView.Adapter<myAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var bookid: TextView = itemView.findViewById(R.id.book_id)
@@ -30,15 +30,15 @@ class myAdapter(val context: Context, val bookList: List<BooksItem>): RecyclerVi
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        bookList.sortedByDescending { it.date_released }
-        holder.bookName.text = bookList[position].title
-        holder.bookid.text = bookList[position].id.toString()
-        holder.bookDate.text = bookList[position].date_released.take(10)
+        bookList?.sortedByDescending { it.date_released }
+        holder.bookName.text = bookList?.get(position)?.title
+        holder.bookid.text = bookList?.get(position)?.id.toString()
+        holder.bookDate.text = bookList?.get(position)?.date_released?.take(10)
         holder.imageButton.setOnClickListener{holder.imageButton.setImageResource(R.drawable.ic_check_w)
             Toast.makeText(context, "Book Downloaded ", Toast.LENGTH_SHORT).show()}
     }
 
     override fun getItemCount(): Int {
-        return bookList.size
+        return bookList?.size ?: 0
     }
 }

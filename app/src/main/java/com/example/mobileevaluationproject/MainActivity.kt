@@ -2,15 +2,15 @@ package com.example.mobileevaluationproject
 
 import SessionManager
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,6 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+
 
 const val BASE_URL = "https://3nt-demo-backend.azurewebsites.net/Access/"
 
@@ -75,10 +76,14 @@ class MainActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             if(checkUserID(useridText.text.toString()) && checkPassword(passwordText.text.toString())){
             login()
-            Toast.makeText(this, "Logged in ", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, BooksActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            this.startActivity(intent)}
+                Toast.makeText(baseContext, "Loading Books Please Wait ", Toast.LENGTH_SHORT).show()
+                val handler = Handler()
+                handler.postDelayed(Runnable {
+                    this.startActivity(intent)
+                }, 2000) //2 seconds
+            }
             else{
                 Toast.makeText(this, "Wrong ID / Password ", Toast.LENGTH_LONG).show()
             }
@@ -121,13 +126,14 @@ class MainActivity : AppCompatActivity() {
 
         retrofitData.enqueue(object : Callback<Token?> {
             override fun onResponse(call: Call<Token?>, response: Response<Token?>) {
-                val responseBody = response.body()!!
+                val responseBody = response.body()
 
-                sessionManager.saveAuthToken(responseBody.access_token)
+                sessionManager.saveAuthToken(responseBody?.access_token)
             }
 
             override fun onFailure(call: Call<Token?>, t: Throwable) {
                 Log.d("Main Activity", "on Failure: " + t.message)
+                Toast.makeText(baseContext, "Failed to log in ", Toast.LENGTH_SHORT).show()
             }
         })
 
