@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
@@ -19,6 +20,7 @@ class myAdapter(val context: Context, val bookList: List<BooksItem>): RecyclerVi
         var bookid: TextView = itemView.findViewById(R.id.book_id)
         var bookName: TextView = itemView.findViewById(R.id.book_name)
         var bookDate: TextView = itemView.findViewById(R.id.book_date)
+        var imageButton: ImageButton = itemView.findViewById(R.id.image_country)
 
     }
 
@@ -31,6 +33,7 @@ class myAdapter(val context: Context, val bookList: List<BooksItem>): RecyclerVi
         holder.bookName.text = bookList[position].title
         holder.bookid.text = bookList[position].id.toString()
         holder.bookDate.text = bookList[position].date_released.take(10)
+        holder.imageButton.setOnClickListener{holder.imageButton.setImageResource(R.drawable.ic_check_w)}
     }
 
     override fun getItemCount(): Int {
