@@ -33,7 +33,8 @@ class myAdapter(val context: Context, val bookList: List<BooksItem>): RecyclerVi
         holder.bookName.text = bookList[position].title
         holder.bookid.text = bookList[position].id.toString()
         holder.bookDate.text = bookList[position].date_released.take(10)
-        holder.imageButton.setOnClickListener{holder.imageButton.setImageResource(R.drawable.ic_check_w)}
+        holder.imageButton.setOnClickListener{holder.imageButton.setImageResource(R.drawable.ic_check_w)
+            Toast.makeText(context, "Book Downloaded ", Toast.LENGTH_SHORT).show()}
     }
 
     override fun getItemCount(): Int {
