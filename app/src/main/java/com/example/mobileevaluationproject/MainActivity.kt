@@ -78,11 +78,10 @@ class MainActivity : AppCompatActivity() {
             login()
             val intent = Intent(this, BooksActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                Toast.makeText(baseContext, "Loading Books Please Wait ", Toast.LENGTH_SHORT).show()
                 val handler = Handler()
                 handler.postDelayed(Runnable {
                     this.startActivity(intent)
-                }, 2000) //2 seconds
+                }, 1000) //1 second
             }
             else{
                 Toast.makeText(this, "Wrong ID / Password ", Toast.LENGTH_LONG).show()

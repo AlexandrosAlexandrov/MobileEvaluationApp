@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Adapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.uniapi.myAdapter
@@ -23,9 +24,12 @@ class BooksActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books)
-        Toast.makeText(baseContext, "Logged in ", Toast.LENGTH_SHORT).show()
 
         sessionManager = SessionManager(this)
+
+        if(sessionManager.fetchAuthToken() == null){
+            Toast.makeText(baseContext, "Wrong credentials, can't login.", Toast.LENGTH_SHORT).show()
+            finish()}
 
         recyclerView = findViewById(R.id.recyclerview)
         recyclerView.setHasFixedSize(true)
