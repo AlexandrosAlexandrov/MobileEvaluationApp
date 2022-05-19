@@ -2,6 +2,7 @@ package com.example.mobileevaluationproject
 
 import SessionManager
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
@@ -10,6 +11,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var useridText: EditText
     lateinit var passwordText: EditText
     lateinit var sessionManager: SessionManager
+    lateinit var infoButton: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +93,15 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Wrong ID / Password ", Toast.LENGTH_LONG).show()
             }
         }
+
+        infoButton = findViewById(R.id.infoButton)
+        infoButton.setOnClickListener { val builder = AlertDialog.Builder(this)
+            builder.setTitle("Πληροφορίες Σύνδεσης")
+            builder.setMessage("UserID: 4 χαρακτήρες (2 κεφαλαία 4 ψηφία)\n" +
+                    "\n" +
+                    "Password: τουλάχιστον 8 χαρακτήρες (2 κεφαλαία, 3 πεζά, 1 ειδικός χαρακτήρας, 2 ψηφία")
+            builder.setPositiveButton("ΟΚ") { dialog, which -> }
+            builder.show() }
 
     }
 

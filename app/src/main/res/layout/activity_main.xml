@@ -59,24 +59,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/passwordText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="38dp"
-            android:layout_marginTop="237dp"
-            android:layout_marginRight="37dp"
-            android:layout_marginBottom="368dp"
-            android:width="300dp"
-            android:height="62dp"
-            android:backgroundTint="#85c370"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/passwordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="237dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginBottom="368dp"
+        android:width="300dp"
+        android:height="62dp"
+        android:backgroundTint="#85c370"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageButton
@@ -97,19 +97,19 @@
         app:layout_constraintVertical_bias="0.55" />
 
     <TextView
+        android:layout_width="67dp"
+        android:layout_height="20dp"
         android:layout_marginLeft="94dp"
         android:layout_marginTop="571dp"
         android:layout_marginRight="93dp"
         android:layout_marginBottom="47dp"
-        android:layout_width="67dp"
-        android:layout_height="20dp"
+        android:text="@string/login"
+        android:textColor="#85c370"
+        android:textSize="15.5sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/login"
-        android:textColor="#85c370"
-        android:textSize="15.5sp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Password"
@@ -129,14 +129,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/infoButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="264dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_info"
-        style="@style/Widget.AppCompat.Button.Borderless"/>
+        app:srcCompat="@drawable/ic_info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
