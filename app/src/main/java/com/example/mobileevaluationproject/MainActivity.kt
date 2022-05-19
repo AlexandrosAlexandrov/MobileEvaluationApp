@@ -90,7 +90,12 @@ class MainActivity : AppCompatActivity() {
                     this.startActivity(intent)
                 }, 1000) //1 second
             } else {
-                Toast.makeText(this, "Wrong ID / Password ", Toast.LENGTH_LONG).show()
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Λάθος UserID / Password")
+                builder.setMessage("Τα στοιχεία δεν είναι σωστά τυποποιημένα. Πατήστε το κουμπί πληροφοριών " +
+                        "για περισσότερα.")
+                builder.setPositiveButton("οκ") { dialog, which -> }
+                builder.show()
             }
         }
 

@@ -28,9 +28,13 @@ class BooksActivity : AppCompatActivity() {
 
         sessionManager = SessionManager(this)
 
-        if(sessionManager.fetchAuthToken() == null){
-            Toast.makeText(baseContext, "Wrong credentials, can't login.", Toast.LENGTH_SHORT).show()
-            finish()}
+        if(sessionManager.fetchAuthToken() == null) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Λανθασμένα Στοιχεία")
+            builder.setMessage("Έχετε υποβάλλει λάθος στοιχεία")
+            builder.setPositiveButton("Επιστροφη") { dialog, which -> finish() }
+            builder.show()
+        }
 
         recyclerView = findViewById(R.id.recyclerview)
         recyclerView.setHasFixedSize(true)
