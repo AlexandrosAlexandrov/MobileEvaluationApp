@@ -43,9 +43,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (checkUserID(useridText.text.toString()))
-                else {
-                    useridText.error = "Λάθος userID"
+                if (useridText.text.length == 4 || useridText.text.length > 4) {
+                    if (checkUserID(useridText.text.toString()))
+                    else {
+                        useridText.error = "Λάθος userID"
+                    }
                 }
             }
 
@@ -61,11 +63,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (checkPassword(passwordText.text.toString()))
-                else {
-                    passwordText.error = "Λάθος κωδικός"
-                }
+                if (passwordText.text.length == 8 || passwordText.text.length > 8) {
+                    if (checkPassword(passwordText.text.toString()))
+                    else {
+                        passwordText.error = "Λάθος κωδικός"
+                    }
 
+                }
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -74,16 +78,15 @@ class MainActivity : AppCompatActivity() {
 
         loginButton = findViewById(R.id.loginButton)
         loginButton.setOnClickListener {
-            if(checkUserID(useridText.text.toString()) && checkPassword(passwordText.text.toString())){
-            login()
-            val intent = Intent(this, BooksActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            if (checkUserID(useridText.text.toString()) && checkPassword(passwordText.text.toString())) {
+                login()
+                val intent = Intent(this, BooksActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 val handler = Handler()
                 handler.postDelayed(Runnable {
                     this.startActivity(intent)
                 }, 1000) //1 second
-            }
-            else{
+            } else {
                 Toast.makeText(this, "Wrong ID / Password ", Toast.LENGTH_LONG).show()
             }
         }
