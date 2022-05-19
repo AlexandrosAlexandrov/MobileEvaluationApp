@@ -1,4 +1,4 @@
-package com.example.uniapi
+package com.example.mobileevaluationproject
 
 import android.content.Context
 import android.content.Intent
@@ -53,19 +53,21 @@ class myAdapter(val context: Context, var bookList: List<BooksItem>?) :
         /*
         Sort all books in a big group by year.
         We only show the date of the first book with a new year, the rest hide their date
+        BUG: The date is visible on another item for no reason.
          */
-        if (bookList?.get(position)?.date_released?.take(4) != date) {
+        if (bookList?.get(position)?.date_released?.take(4) != date || position == 0) {
             date = bookList?.get(position)?.date_released?.take(4)
             holder.bookDate.text = bookList?.get(position)?.date_released?.take(4)
-            holder.bookDate.isVisible = true
         } else {
-            holder.bookDate.isInvisible = true
+            holder.bookDate.text = ""
         }
 
         /* We can do this to get the image from url but they are dummy images anyway
             //Picasso.get().load(bookList?.get(position)?.img_url).into(holder.imageButton)
          */
 
+
+        //BUG: When clicking an item to download, another item is also downloaded.
         holder.imageButton.setOnClickListener {
             holder.imageButton.setImageResource(R.drawable.ic_check_w)
             //Download the PDF here.

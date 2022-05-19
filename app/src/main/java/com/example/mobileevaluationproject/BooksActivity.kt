@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.uniapi.myAdapter
+import com.example.mobileevaluationproject.myAdapter
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
