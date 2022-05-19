@@ -16,7 +16,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#000000"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/book_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="date"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/image_country"
@@ -34,32 +43,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/book_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/book_id"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-
-                <TextView
                     android:id="@+id/book_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/title"
                     android:textColor="@color/white"
-                    android:textSize="15sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/book_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="date"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
 
 
 

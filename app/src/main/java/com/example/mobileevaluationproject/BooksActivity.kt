@@ -22,6 +22,7 @@ class BooksActivity : AppCompatActivity() {
     lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        title = "Περιοδικά"
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books)
 
