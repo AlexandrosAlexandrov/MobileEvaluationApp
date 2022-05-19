@@ -10,6 +10,7 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobileevaluationproject.BooksItem
 import com.example.mobileevaluationproject.R
@@ -17,8 +18,13 @@ import com.squareup.picasso.Picasso
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
+
 class myAdapter(val context: Context, var bookList: List<BooksItem>?) :
     RecyclerView.Adapter<myAdapter.ViewHolder>() {
+
+    companion object {
+        var date: String? = null
+    }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var bookName: TextView = itemView.findViewById(R.id.book_name)
@@ -42,7 +48,19 @@ class myAdapter(val context: Context, var bookList: List<BooksItem>?) :
             )
         }
         holder.bookName.text = bookList?.get(position)?.title
-        holder.bookDate.text = bookList?.get(position)?.date_released?.take(4)//}
+
+
+        /*
+        Sort all books in a big group by year.
+        We only show the date of the first book with a new year, the rest hide their date
+         */
+        if (bookList?.get(position)?.date_released?.take(4) != date) {
+            date = bookList?.get(position)?.date_released?.take(4)
+            holder.bookDate.text = bookList?.get(position)?.date_released?.take(4)
+            holder.bookDate.isVisible = true
+        } else {
+            holder.bookDate.isInvisible = true
+        }
 
         /* We can do this to get the image from url but they are dummy images anyway
             //Picasso.get().load(bookList?.get(position)?.img_url).into(holder.imageButton)
