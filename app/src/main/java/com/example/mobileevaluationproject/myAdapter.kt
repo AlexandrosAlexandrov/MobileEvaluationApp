@@ -69,6 +69,7 @@ class myAdapter(val context: Context, var bookList: List<BooksItem>?) :
                             "changed. Position is: " + position + " Adapter position is: " + holder.adapterPosition
                 )
                 //Download the PDF here.
+                Toast.makeText(context, "Book: " + bookList?.get(position)?.title +" has been downloaded.", Toast.LENGTH_SHORT).show()
             }
         }
     }

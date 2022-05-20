@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        title = "Σύνδεση"
+        title = ""
 
         sessionManager = SessionManager(this)
 
