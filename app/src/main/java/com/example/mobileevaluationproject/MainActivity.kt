@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (useridText.text.length == 4 || useridText.text.length > 4) {
+                if (useridText.text.length == 6 || useridText.text.length > 6) {
                     if (checkUserID(useridText.text.toString()))
                     else {
                         useridText.error = "Λάθος userID"
@@ -75,7 +75,6 @@ class MainActivity : AppCompatActivity() {
                     else {
                         passwordText.error = "Λάθος κωδικός"
                     }
-
                 }
             }
 
@@ -83,6 +82,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        //set login button to login if both fields are checked correctly
         loginButton = findViewById(R.id.loginButton)
         loginButton.setOnClickListener {
             if (checkUserID(useridText.text.toString()) && checkPassword(passwordText.text.toString())) {
@@ -92,37 +92,44 @@ class MainActivity : AppCompatActivity() {
                 val handler = Handler()
                 handler.postDelayed(Runnable {
                     this.startActivity(intent)
-                }, 1000) //1 second
+                }, 1000) //wait 1 second to make sure we have the token before we make the next api call
             } else {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Λάθος UserID / Password")
-                builder.setMessage("Τα στοιχεία δεν είναι σωστά τυποποιημένα. Πατήστε το κουμπί πληροφοριών " +
-                        "για περισσότερα.")
+                builder.setMessage(
+                    "Τα στοιχεία δεν είναι σωστά τυποποιημένα. Πατήστε το κουμπί πληροφοριών " +
+                            "για περισσότερα."
+                )
                 builder.setPositiveButton("οκ") { dialog, which -> }
                 builder.show()
             }
         }
 
+        //set info button to show info about userID and password when clicked
         infoButton = findViewById(R.id.infoButton)
-        infoButton.setOnClickListener { val builder = AlertDialog.Builder(this)
+        infoButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
             builder.setTitle("Πληροφορίες Σύνδεσης")
-            builder.setMessage("UserID: 4 χαρακτήρες (2 κεφαλαία 4 ψηφία)\n" +
-                    "\n" +
-                    "Password: τουλάχιστον 8 χαρακτήρες (2 κεφαλαία, 3 πεζά, 1 ειδικός χαρακτήρας, 2 ψηφία")
+            builder.setMessage(
+                "UserID: 4 χαρακτήρες (2 κεφαλαία 4 ψηφία)\n" +
+                        "\n" +
+                        "Password: τουλάχιστον 8 χαρακτήρες (2 κεφαλαία, 3 πεζά, 1 ειδικός χαρακτήρας, 2 ψηφία"
+            )
             builder.setPositiveButton("ΟΚ") { dialog, which -> }
-            builder.show() }
+            builder.show()
+        }
 
     }
 
     private fun checkUserID(text: String?): Boolean {
-        var p: Pattern =
+        val p: Pattern =
             Pattern.compile("[A-Z]{2}[0-9]{4}") //2 uppercase letters followed by 4 numbers
-        var m: Matcher = p.matcher(text)
+        val m: Matcher = p.matcher(text)
         return m.matches()
     }
 
     private fun checkPassword(text: String?): Boolean {
-        var p: Pattern = Pattern.compile(
+        val p: Pattern = Pattern.compile(
             "^"
                     + "(?=.*[0-9])" + "(?=.*[0-9])"                //at least 2 numbers (most likely a better way to do it but this works)
                     + "(?=.*[A-Z])" + "(?=.*[A-Z])"                //at least 2 uppercase letters
@@ -131,7 +138,7 @@ class MainActivity : AppCompatActivity() {
                     + ".{8}"                                     //8 characters
                     + "$"
         )
-        var m: Matcher = p.matcher(text)
+        val m: Matcher = p.matcher(text)
         return m.matches()
     }
 

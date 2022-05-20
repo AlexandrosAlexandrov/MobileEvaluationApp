@@ -28,6 +28,7 @@ class BooksActivity : AppCompatActivity() {
 
         sessionManager = SessionManager(this)
 
+        //if token is null then show alert message and go back to main activity
         if(sessionManager.fetchAuthToken() == null) {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Λανθασμένα Στοιχεία")
@@ -71,7 +72,6 @@ class BooksActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<List<BooksItem>?>, t: Throwable) {
                 Log.d("Books Activity", "on Failure: " + t.message)
-                Toast.makeText(baseContext, "Failed to log in ", Toast.LENGTH_SHORT).show()
                 finish()
             }
         })
