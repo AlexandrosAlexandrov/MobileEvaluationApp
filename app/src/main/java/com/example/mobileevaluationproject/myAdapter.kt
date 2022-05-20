@@ -1,20 +1,14 @@
 package com.example.mobileevaluationproject
 
 import android.content.Context
-import android.content.Intent
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mobileevaluationproject.BooksItem
-import com.example.mobileevaluationproject.R
-import com.squareup.picasso.Picasso
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -53,7 +47,6 @@ class myAdapter(val context: Context, var bookList: List<BooksItem>?) :
         /*
         Sort all books in a big group by year.
         We only show the date of the first book with a new year, the rest hide their date
-        BUG: The date is visible on another item for no reason.
          */
         if (bookList?.get(position)?.date_released?.take(4) != date || position == 0) {
             date = bookList?.get(position)?.date_released?.take(4)
@@ -67,11 +60,16 @@ class myAdapter(val context: Context, var bookList: List<BooksItem>?) :
          */
 
 
-        //BUG: When clicking an item to download, an item 7 positions after, is also downloaded.
+        //BUG: When clicking an item to download, an item 7 positions next to it, changes the image as well.
         holder.imageButton.setOnClickListener {
-            holder.imageButton.setImageResource(R.drawable.ic_check_w)
-            //Download the PDF here.
-            
+            if (holder.adapterPosition == position) {
+                holder.imageButton.setImageResource(R.drawable.ic_check_w)
+                Log.d(
+                    "Adapter", "Book with id: " + bookList?.get(position)?.id +
+                            "changed. Position is: " + position + " Adapter position is: " + holder.adapterPosition
+                )
+                //Download the PDF here.
+            }
         }
     }
 
