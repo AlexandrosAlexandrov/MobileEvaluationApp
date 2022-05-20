@@ -67,11 +67,11 @@ class myAdapter(val context: Context, var bookList: List<BooksItem>?) :
          */
 
 
-        //BUG: When clicking an item to download, another item is also downloaded.
+        //BUG: When clicking an item to download, an item 7 positions after, is also downloaded.
         holder.imageButton.setOnClickListener {
             holder.imageButton.setImageResource(R.drawable.ic_check_w)
             //Download the PDF here.
-            Toast.makeText(context, "Book Downloaded ", Toast.LENGTH_SHORT).show()
+            
         }
     }
 
