@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
                     + "(?=.*[A-Z])" + "(?=.*[A-Z])"                //at least 2 uppercase letters
                     + "(?=.*[a-z])" + "(?=.*[a-z])" + "(?=.*[a-z])"  //at least 3 lowercase letters
                     + "(?=.*[@#$%^&*+=!])"                       //at least 1 special character
-                    + ".{8}"                                     //8 characters
+                    + ".{8,}"                                     //at least 8 characters
                     + "$"
         )
         val m: Matcher = p.matcher(text)

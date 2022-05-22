@@ -70,6 +70,7 @@ class myAdapter(val context: Context, var bookList: List<BooksItem>?) :
                 )
                 //Download the PDF here.
                 Toast.makeText(context, "Book: " + bookList?.get(position)?.title +" has been downloaded.", Toast.LENGTH_SHORT).show()
+                holder.imageButton.isEnabled = false
             }
         }
     }
